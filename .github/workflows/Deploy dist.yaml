@@ -1,7 +1,7 @@
 name: Deploy Dist
 on: push
 jobs:
-    test:
+    test: 
         runs-on: ubuntu-latest
         steps:
             - name: Get Code
@@ -15,11 +15,25 @@ jobs:
               uses: actions/setup-node@v6
               with: 
                 node-version: 22
-            - name: print Node Version 
-              run: node -v 
             - name: install dependencies
               run: npm install 
             - name: Run test cases
               run: npm run test 
             - name: Completed runiing tests
               run: echo "Test job was done!!"
+    build:     
+        runs-on: ubuntu-latest
+        steps:
+            - name: Get Code
+              uses: actions/checkout@v6
+            - name: SetUp node js 
+              uses: actions/setup-node@v6
+              with: 
+                node-version: 22
+            - name: install dependencies
+              run: npm install 
+            - name: Run build cases
+              run: npm run build
+            - name: Completed running build
+              run: echo "build job was done!!"          
+
